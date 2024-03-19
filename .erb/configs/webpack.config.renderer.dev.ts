@@ -7,9 +7,12 @@ import chalk from 'chalk';
 import { merge } from 'webpack-merge';
 import { execSync, spawn } from 'child_process';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import { configDotenv } from 'dotenv';
 import baseConfig from './webpack.config.base';
 import webpackPaths from './webpack.paths';
 import checkNodeEnv from '../scripts/check-node-env';
+
+configDotenv();
 
 // When an ESLint server is running, we can't set the NODE_ENV so we'll check if it's
 // at the dev webpack config is not accidentally run in a production environment
@@ -141,6 +144,10 @@ const configuration: webpack.Configuration = {
      */
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
+    }),
+
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env),
     }),
 
     new webpack.LoaderOptionsPlugin({

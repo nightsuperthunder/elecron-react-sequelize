@@ -1,0 +1,12 @@
+.homepage-container {
+  text-align: center;
+}
+
+.homepage-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.homepage-message {
+  font-size: 1.2rem;
+}
